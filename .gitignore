@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rcheck
+*/inst/module_docs/
+*/man/
+*.tar.gz
