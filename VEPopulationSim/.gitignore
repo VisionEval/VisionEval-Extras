@@ -4,3 +4,5 @@ plan.txt
 /data/
 inst/models/inputs/snap-populationsim/PopulationSim_Model/output
 /models/
+launch.bat
+.Rprofile
