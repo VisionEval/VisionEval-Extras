@@ -11,7 +11,7 @@ To use:
 
 1. Build and install with RStudio into ve-lib (installed VisionEval R library)
 2. Start VisionEval and installModel("VERSPM","popsim")
-3. Install PopulationSim following their instructins
+3. Install PopulationSim following their instructions
 4. Open the Conda environment and "activate popsim"
 5. In the Conda environment, change into models/VERSPM-popsim directory "inputs/snap_populationsim/PopulationSim_Model
 6. Run "python run_populationsim.py"
