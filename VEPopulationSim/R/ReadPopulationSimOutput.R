@@ -1,6 +1,6 @@
 ReadPopulationSimOutputSpecifications <- list(
   Function="getPopulationSimOutputSpecs", # name of the function (no need to export) that returns the specification
-  Specs=FALSE # Specs is only needed to support the Fields directive in Dynamic
+  Specs=FALSE # Specs is only needed to support the Fields directive in VEPopulationSim
              # In general, it will only need to be TRUE when the module is going to "Get" fields from
              # the Datastore. If this module is only doing "Set" specifications (plus, if you like
              # "Inp" specifications that load .csv files into the Datastore), then Specs here can be
@@ -29,7 +29,7 @@ ReadPopulationSimOutputSpecifications <- list(
 visioneval::savePackageDataset(ReadPopulationSimOutputSpecifications, overwrite = TRUE)
 
 
-# An environment constructed within the package that will hold the Dynamic message and configuration
+# An environment constructed within the package that will hold the VEPopulationSim message and configuration
 # loaded during the specification creation. Shows how to save "session" details during a model run.
 dynamic.env <- new.env()
 
@@ -152,16 +152,16 @@ ReadPopulationSimOutputSpecifications <- list(
 
 # Module Specification function, returning a list of "Get" and "Set" elements (and possibly "Inp") that will
 # be supplied to, and retrieved from, this module. This function is called internally and not
-# exported in the VESnapshot Namespace. The module function \code{Dynamic} is exported. The AllSpecs_ls is
-# required as a parameter if "Specs" is true in the DynamicSpecifications above (and in any case where you
+# exported in the VESnapshot Namespace. The module function \code{VEPopulationSim} is exported. The AllSpecs_ls is
+# required as a parameter if "Specs" is true in the VEPopulationSimSpecifications above (and in any case where you
 # expect to "Get" existing fields from the Datastore).
 # Even though this function is exported from this example, it does not need to be exported in the general case.
-#' Function to generate module specifications for Dynamic from visioneval.cnf
+#' Function to generate module specifications for VEPopulationSim from visioneval.cnf
 #' @param AllSpecs_ls a list of specifications for all known packages and modules defined up to this point
-#'    in the model run. Furnished by the framework if "Specs" is true (see DynamicSpecifications above)
+#'    in the model run. Furnished by the framework if "Specs" is true (see VEPopulationSimSpecifications above)
 #' @param Cache a logical provided by the framework. FALSE when first building the specification; TRUE when
 #'    the specification is accessed during a model run.
-#' @return a "Get" specification if there is valid "Field:" block in the Dynamic configuration, otherwise
+#' @return a "Get" specification if there is valid "Field:" block in the VEPopulationSim configuration, otherwise
 #'    just return an empty list.
 #' @import data.table
 #' @export
@@ -187,21 +187,21 @@ getPopulationSimOutputSpecs <- function(AllSpecs_ls=NA,Cache=FALSE) {
   #   Cache is FALSE and the dynamic.env will be rebuilt; when the Specification is requested again as runModule
   #   happens, Cache is TRUE. The specification function can ignore Cache (and just regenerate each time).
 
-  # Look for the "Dynamic" specification
-  config <- visioneval::getRunParameter("Dynamic") # looking in the RunParam_ls for the current model stage
+  # Look for the "VEPopulationSim" specification
+  config <- visioneval::getRunParameter("VEPopulationSim") # looking in the RunParam_ls for the current model stage
   # dynamicParam_ls <- if ( ! is.list(config) ) {
     # Could add any other directories you like
-    DynamicDir <- visioneval::getRunParameter("DynamicDir")
+    VEPopulationSimDir <- visioneval::getRunParameter("VEPopulationSimDir")
     ModelDir   <- visioneval::getRunParameter("ModelDir")
     ParamPath  <- visioneval::getRunParameter("ParamPath") # already expanded from ParamDir to absolute path
     InputPath  <- visioneval::getRunParameter("InputPath") # already expanded to all the places to look for inputs
-    configDir  <- findFileOnPath( DynamicDir, c(ModelDir,ParamPath,InputPath) )
+    configDir  <- findFileOnPath( VEPopulationSimDir, c(ModelDir,ParamPath,InputPath) )
     # if ( !is.na(configDir) ) {
     dynamicParam_ls <- readConfigurationFile(ParamDir=configDir) # look for visioneval.cnf or equivalent
-    config <- getRunParameter("Dynamic",Param_ls=dynamicParam_ls)
+    config <- getRunParameter("VEPopulationSim",Param_ls=dynamicParam_ls)
     paste("Loaded:",configDir)
     # } else {
-    #   paste("Could not open Dynamic configuration file in",configDir)
+    #   paste("Could not open VEPopulationSim configuration file in",configDir)
     # }
   # } else {
     # if ( "Message" %in% names(config) ) config$Message else "No message supplied"
@@ -209,17 +209,17 @@ getPopulationSimOutputSpecs <- function(AllSpecs_ls=NA,Cache=FALSE) {
 
   # If still no configuration specified, do a default configuration
   # if ( ! is.list(config) ) {
-  #   Message = c("Unconfigured Dynamic module",Message)
+  #   Message = c("Unconfigured VEPopulationSim module",Message)
   #   dynamic.env$Message <- Message
   #   return( list() ) # No specifications for this module; let framework inject RunBy="Region"
   # }
 
   # Process configuration
     InpSpecPath <- findFileOnPath(config$PopSimDictionary, 
-                                  file.path(InputPath, DynamicDir))
+                                  file.path(InputPath, VEPopulationSimDir))
     InpSpec_dt <- fread(InpSpecPath)
     SetSpecPath <- findFileOnPath(config$VESimHouseholdDictionary, 
-                                  file.path(InputPath, DynamicDir))
+                                  file.path(InputPath, VEPopulationSimDir))
     SetSpec_dt <- fread(SetSpecPath)
     SetSpec_dt <- rbindlist(list(InpSpec_dt, SetSpec_dt),
                             use.names=TRUE,
@@ -227,7 +227,7 @@ getPopulationSimOutputSpecs <- function(AllSpecs_ls=NA,Cache=FALSE) {
     SetSpec_dt[TYPE=="currency", UNITS:=paste0(UNITS,".",config$ACSYear)]
     
     # Check if the necessary fields are in the configuration file
-    requiredSynFields_ <- c("NP", "NW", "HHINCADJ", "AGEP", "WORKER")
+    requiredSynFields_ <- c("NP", "NW", "HHINCADJ", "AGEP", "WORKER", "per_num")
     expectedHhCols <- config$PopSimFiles$households$columns
     expectedPerCols <- config$PopSimFiles$persons$columns
     newHhColNames <- setdiff(expectedHhCols, requiredSynFields_)
@@ -293,14 +293,14 @@ ReadPopulationSimOutput <- function(L){
   # Get the dynamic parameter list
   dynamicParam_ls <- mget("dynamicParam_ls", envir=dynamic.env, ifnotfound=NA)[[1]]
   
-  if(is.na(dynamicParam_ls)) stop("Dynamic parameter is not a directory")
-  config <- getRunParameter("Dynamic",Param_ls=dynamicParam_ls)
+  if(is.na(dynamicParam_ls)) stop("VEPopulationSim parameter is not a directory")
+  config <- getRunParameter("VEPopulationSim",Param_ls=dynamicParam_ls)
   
   # Check if PopSimOutputDir is a full path
   if(!dir.exists(config$PopSimOutputDir[[L$G$Year]])){
     InputPath  <- visioneval::getRunParameter("InputPath")
-    DynamicDir  <- visioneval::getRunParameter("DynamicDir")
-    config$PopSimOutputDir[[L$G$Year]] <- findFileOnPath(config$PopSimOutputDir[[L$G$Year]], file.path(InputPath, DynamicDir))
+    VEPopulationSimDir  <- visioneval::getRunParameter("VEPopulationSimDir")
+    config$PopSimOutputDir[[L$G$Year]] <- findFileOnPath(config$PopSimOutputDir[[L$G$Year]], file.path(InputPath, VEPopulationSimDir))
   }
   
   synHh_dt <- fread(file.path(config$PopSimOutputDir[[L$G$Year]],
@@ -346,8 +346,10 @@ ReadPopulationSimOutput <- function(L){
     }
   }
   
-  visioneval::writeLog(paste("ReadPopulationSimOutput: ",
-                             c(Message)),Level=logLevel)
+  if(length(Message)>0){
+    visioneval::writeLog(paste("ReadPopulationSimOutput: ",
+                               c(Message)),Level=logLevel)
+  }
   
   #fix seed as synthesis involves sampling
   set.seed(L$G$Seed)

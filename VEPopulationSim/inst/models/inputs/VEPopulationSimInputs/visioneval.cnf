@@ -1,0 +1,27 @@
+VEPopulationSim:
+    PopSimDictionary: PopulationSim_DataDictionary.csv
+    VESimHouseholdDictionary: VESimHousehold_DataDictionary.csv
+    ACSYear: 2017
+    PopSimOutputDir:
+      2010: PopulationSim_Model\output
+      2038: PopulationSim_Model\output
+    PopSimFiles:
+      household_id: household_id
+      households:
+        filename: synthetic_households.csv
+        columns:
+          - NP        #Required
+          - NW        #Required
+          - HHINCADJ  #Required
+          - ACCESS    #New
+          - HTYPE     #New
+      persons:
+        filename: synthetic_persons.csv
+        columns:
+          - per_num   #Required
+          - AGEP      #Required
+          - PINCADJ   #Required
+          - WORKER    #Required
+          - RAC1P     #New
+          - ENG       #New
+    BzoneField: Bzone

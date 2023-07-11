@@ -15,14 +15,14 @@ max_expansion_factor: 30
 
 # Geographic Settings
 # ------------------------------------------------------------------
-geographies: [REGION, PUMA, TRACT, BG]
+geographies: [REGION, PUMA, TRACT, Bzone]
 seed_geography: PUMA
 
 
 # Tracing
 # ------------------------------------------------------------------
 trace_geography:
-  BG: 410290018021
+  Bzone: 410290018021
   TRACT: 41029002000
 
   
@@ -64,13 +64,9 @@ input_table_list:
     filename : geo_cross_walk.csv
     column_map:
       TRACTGEOID: TRACT
-      BzoneID: BG
       
-  - tablename: BG_control_data
-    filename : control_totals_bg.csv
-    column_map:
-      TRACTGEOID: TRACT
-      BzoneID: BG
+  - tablename: Bzone_control_data
+    filename : control_totals_bzone.csv
       
   - tablename: TRACT_control_data
     filename : control_totals_tract.csv
@@ -78,7 +74,6 @@ input_table_list:
       TRACTGEOID: TRACT
       
   - tablename: REGION_control_data
-    #filename : control_totals_meta.csv
     filename : scaled_control_totals_meta.csv
 
 
@@ -102,9 +97,9 @@ control_file_name: controls.csv
 output_tables:
   action: include
   tables:
-    - summary_BG
+    - summary_Bzone
     - summary_TRACT
-    - summary_BG_PUMA
+    - summary_Bzone_PUMA
     - expanded_household_ids
 
 
@@ -133,7 +128,6 @@ output_synthetic_population:
       - PINCADJ
       - WORKER
       - ENG
-      - COW
      
 
 
@@ -147,7 +141,7 @@ models:
     - final_seed_balancing
     - integerize_final_seed_weights
     - sub_balancing.geography=TRACT
-    - sub_balancing.geography=BG
+    - sub_balancing.geography=Bzone
     - expand_households
     - write_data_dictionary
     - summarize
