@@ -227,7 +227,7 @@ getPopulationSimOutputSpecs <- function(AllSpecs_ls=NA,Cache=FALSE) {
     SetSpec_dt[TYPE=="currency", UNITS:=paste0(UNITS,".",config$ACSYear)]
     
     # Check if the necessary fields are in the configuration file
-    requiredSynFields_ <- c("NP", "NW", "HHINCADJ", "AGEP", "WORKER")
+    requiredSynFields_ <- c("NP", "NW", "HHINCADJ", "AGEP", "WORKER", "per_num")
     expectedHhCols <- config$PopSimFiles$households$columns
     expectedPerCols <- config$PopSimFiles$persons$columns
     newHhColNames <- setdiff(expectedHhCols, requiredSynFields_)
@@ -346,8 +346,10 @@ ReadPopulationSimOutput <- function(L){
     }
   }
   
-  visioneval::writeLog(paste("ReadPopulationSimOutput: ",
-                             c(Message)),Level=logLevel)
+  if(length(Message)>0){
+    visioneval::writeLog(paste("ReadPopulationSimOutput: ",
+                               c(Message)),Level=logLevel)
+  }
   
   #fix seed as synthesis involves sampling
   set.seed(L$G$Seed)

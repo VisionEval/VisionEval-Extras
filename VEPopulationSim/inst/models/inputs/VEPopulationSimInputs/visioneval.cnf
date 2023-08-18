@@ -24,4 +24,4 @@ VEPopulationSim:
           - WORKER    #Required
           - RAC1P     #New
           - ENG       #New
-    BzoneField: BG
+    BzoneField: Bzone

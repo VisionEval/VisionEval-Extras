@@ -20,11 +20,11 @@ State       : OR
 
 # Scenario description
 ModelScript    : run_model.R
-Scenario       : VESnap Demo model for Dynamic module
-Description    : Runs a few modules and runs the Dynamic module
+Scenario       : VEPopulationSim Demo model using Dynamic module
+Description    : Uses synthetic population from third party tool and runs VERSPM model.
 BaseYear       : 2010
 Years          : [ 2010, 2038 ]
 
 # Dynamic configuration
 VEPopulationSimDir   : VEPopulationSimInputs # Directory in which the populationsim related configuration file and relevant inputs are stored
-                                   # It is in the "inputs" directory in this prototype version
+                                             # It is in the "inputs" directory in this prototype version
