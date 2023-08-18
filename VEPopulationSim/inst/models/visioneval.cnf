@@ -20,8 +20,8 @@ State       : OR
 
 # Scenario description
 ModelScript    : run_model.R
-Scenario       : VEPopulationSim Demo model using Dynamic module
-Description    : Uses synthetic population from third party tool and runs VERSPM model.
+Scenario       : VEPopulationSim model using Dynamic module
+Description    : Sample setup to demonstrate VEPopulationSim
 BaseYear       : 2010
 Years          : [ 2010, 2038 ]
 
