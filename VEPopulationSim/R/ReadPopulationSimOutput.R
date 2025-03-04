@@ -10,22 +10,21 @@ ReadPopulationSimOutputSpecifications <- list(
 #Save the data specifications list
 #---------------------------------
 
-#' Specifications list for ReadPopulationSimOutput module
-#'
-#' A list containing specifications for the ReadPopulationSimOutput module.
-#'
-#' @format A list containing 5 components:
-#' \describe{
-#'  \item{RunBy}{the level of geography that the module is run at}
-#'  \item{NewSetTable}{new table to be created for datasets specified in the
-#'  'Set' specifications}
-#'  \item{Inp}{scenario input data to be loaded into the datastore for this
-#'  module}
-#'  \item{Get}{module inputs to be read from the datastore}
-#'  \item{Set}{module outputs to be written to the datastore}
-#' }
-#' @source ReadPopulationSimOutput.R script.
-"ReadPopulationSimOutputSpecifications"
+# Specifications list for ReadPopulationSimOutput module
+#
+# A list containing specifications for the ReadPopulationSimOutput module.
+#
+# @format A list containing 5 components:
+# \describe{
+#  \item{RunBy}{the level of geography that the module is run at}
+#  \item{NewSetTable}{new table to be created for datasets specified in the
+#  'Set' specifications}
+#  \item{Inp}{scenario input data to be loaded into the datastore for this
+#  module}
+#  \item{Get}{module inputs to be read from the datastore}
+#  \item{Set}{module outputs to be written to the datastore}
+# }
+# @source ReadPopulationSimOutput.R script.
 visioneval::savePackageDataset(ReadPopulationSimOutputSpecifications, overwrite = TRUE)
 
 

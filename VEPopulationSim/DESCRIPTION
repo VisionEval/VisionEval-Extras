@@ -12,9 +12,11 @@ License: file LICENSE
 LazyData: TRUE
 Depends: R (>= 4.1.2)
 Imports:
-    visioneval
+    visioneval,
+    VELandUse,
+    data.table,
+    fields
 Encoding: UTF-8
-Roxygen: list(load='source')
 RoxygenNote: 7.2.3
 Collate: 
     'ReadPopulationSimOutput.R'
