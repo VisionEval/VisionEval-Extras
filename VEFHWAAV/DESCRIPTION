@@ -20,7 +20,6 @@ Imports:
 Suggests:
     knitr
 VignetteBuilder: knitr
-Roxygen: list(load="pkgload")
 RoxygenNote: 7.1.2
 Remotes:
 Collate: 

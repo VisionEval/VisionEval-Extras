@@ -355,21 +355,19 @@ AdjustVehicleOwnershipSpecifications <- list(
 
 #Save the data specifications list
 #---------------------------------
-#' Specifications list for AdjustVehicleOwnership module
-#'
-#' A list containing specifications for the AdjustVehicleOwnership module.
-#'
-#' @format A list containing 4 components:
-#' \describe{
-#'  \item{RunBy}{the level of geography that the module is run at}
-#'  \item{Inp}{model inputs to be saved to the datastore}
-#'  \item{Get}{module inputs to be read from the datastore}
-#'  \item{Set}{module outputs to be written to the datastore}
-#' }
-#' @source AdjustVehicleOwnership.R script.
-"AdjustVehicleOwnershipSpecifications"
+# Specifications list for AdjustVehicleOwnership module
+#
+# A list containing specifications for the AdjustVehicleOwnership module.
+#
+# @format A list containing 4 components:
+# \describe{
+#  \item{RunBy}{the level of geography that the module is run at}
+#  \item{Inp}{model inputs to be saved to the datastore}
+#  \item{Get}{module inputs to be read from the datastore}
+#  \item{Set}{module outputs to be written to the datastore}
+# }
+# @source AdjustVehicleOwnership.R script.
 visioneval::savePackageDataset(AdjustVehicleOwnershipSpecifications, overwrite = TRUE)
-
 
 #=======================================================
 #SECTION 3: DEFINE FUNCTIONS THAT IMPLEMENT THE SUBMODEL
