@@ -39,8 +39,8 @@ AdjustVehicleOwnershipSpecifications <- list(
   #Specify new tables to be created by Set if any
   #Specify input data
   #Specify data to be loaded from data store
-  Get = items(
-    item(
+  Get = list(
+    list(
       NAME = "Azone",
       TABLE = "Azone",
       GROUP = "Year",
@@ -49,9 +49,9 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME =
-        items(
+        list(
           "HighCarSvcCost",
           "LowCarSvcCost"),
       TABLE = "Azone",
@@ -61,7 +61,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "AveCarSvcVehicleAge",
       TABLE = "Azone",
       GROUP = "Year",
@@ -70,9 +70,9 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME =
-        items(
+        list(
           "LtTrkCarSvcSubProp",
           "AutoCarSvcSubProp"),
       TABLE = "Azone",
@@ -82,7 +82,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0", "> 1"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "HhId",
       TABLE = "Household",
       GROUP = "Year",
@@ -91,8 +91,8 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = ""
     ),
-    item(
-      NAME = items(
+    list(
+      NAME = list(
         "Vehicles",
         "NumLtTrk",
         "NumAuto"),
@@ -103,7 +103,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "CarSvcLevel",
       TABLE = "Household",
       GROUP = "Year",
@@ -112,7 +112,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = c("Low", "High")
     ),
-    item(
+    list(
       NAME = "Azone",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -121,7 +121,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "HhId",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -130,7 +130,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "VehId",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -139,7 +139,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "VehicleAccess",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -148,7 +148,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = c("Own", "LowCarSvc", "HighCarSvc")
     ),
-    item(
+    list(
       NAME = "Type",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -157,7 +157,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = c("Auto", "LtTrk")
     ),
-    item(
+    list(
       NAME = "AVLvl",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -166,7 +166,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = c("L0", "L3", "L5")
     ),
-    item(
+    list(
       NAME = "Age",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -175,7 +175,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "OwnCost",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -184,7 +184,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "OwnCostPerMile",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -193,7 +193,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "InsCost",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -204,8 +204,8 @@ AdjustVehicleOwnershipSpecifications <- list(
     )
   ),
   #Specify data to saved in the data store
-  Set = items(
-    item(
+  Set = list(
+    list(
       NAME = "Age",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -217,7 +217,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Vehicle age in years"
     ),
-    item(
+    list(
       NAME = "VehicleAccess",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -229,7 +229,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 10,
       DESCRIPTION = "Identifier whether vehicle is owned by household (Own), if vehicle is low level car service (LowCarSvc), or if vehicle is high level car service (HighCarSvc)"
     ),
-    item(
+    list(
       NAME = "OwnCost",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -241,7 +241,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Annual cost of vehicle ownership including depreciation, financing, insurance, taxes, and residential parking in dollars"
     ),
-    item(
+    list(
       NAME = "OwnCostPerMile",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -253,7 +253,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Annual cost of vehicle ownership per mile of vehicle travel (dollars per mile)"
     ),
-    item(
+    list(
       NAME = "InsCost",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -265,7 +265,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Annual vehicle insurance cost in dollars"
     ),
-    item(
+    list(
       NAME = "AVLvl",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -277,8 +277,8 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 2,
       DESCRIPTION = "Identifier for vehicle level of automation"
     ),
-    item(
-      NAME = items(
+    list(
+      NAME = list(
         "NumAVLvl3Vehicles",
         "NumAVLvl5Vehicles"),
       TABLE = "Household",
@@ -288,12 +288,12 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = "",
       SIZE = 0,
-      DESCRIPTION = items(
+      DESCRIPTION = list(
         "Number of automation level 5 automobiles and light trucks owned or leased by the household including high level car service vehicles available to driving-age persons",
         "Number of automation level 3 automobiles and light trucks owned or leased by the household including high level car service vehicles available to driving-age persons"
       )
     ),
-    item(
+    list(
       NAME = "SwitchToCarSvc",
       TABLE = "Vehicle",
       GROUP = "Year",
@@ -305,7 +305,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Identifies whether a vehicle was switched from owned to car service"
     ),
-    item(
+    list(
       NAME = "OwnCostSavings",
       TABLE = "Household",
       GROUP = "Year",
@@ -317,7 +317,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Annual vehicle ownership cost (depreciation, finance, insurance, taxes) savings in dollars resulting from substituting the use of car services for a household vehicle"
     ),
-    item(
+    list(
       NAME = "OwnCost",
       TABLE = "Household",
       GROUP = "Year",
@@ -329,8 +329,8 @@ AdjustVehicleOwnershipSpecifications <- list(
       SIZE = 0,
       DESCRIPTION = "Annual household vehicle ownership cost (depreciation, finance, insurance, taxes) savings in dollars"
     ),
-    item(
-      NAME = items(
+    list(
+      NAME = list(
         "Vehicles",
         "NumLtTrk",
         "NumAuto",
@@ -343,7 +343,7 @@ AdjustVehicleOwnershipSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = "",
       SIZE = 0,
-      DESCRIPTION = items(
+      DESCRIPTION = list(
         "Number of automobiles and light trucks owned or leased by the household including high level car service vehicles available to driving-age persons",
         "Number of light trucks (pickup, sport-utility vehicle, and van) owned or leased by household",
         "Number of automobiles (i.e. 4-tire passenger vehicles that are not light trucks) owned or leased by household",
@@ -353,20 +353,22 @@ AdjustVehicleOwnershipSpecifications <- list(
   )
 )
 
-#Save the data specifications list
-#---------------------------------
-# Specifications list for AdjustVehicleOwnership module
-#
-# A list containing specifications for the AdjustVehicleOwnership module.
-#
-# @format A list containing 4 components:
-# \describe{
-#  \item{RunBy}{the level of geography that the module is run at}
-#  \item{Inp}{model inputs to be saved to the datastore}
-#  \item{Get}{module inputs to be read from the datastore}
-#  \item{Set}{module outputs to be written to the datastore}
-# }
-# @source AdjustVehicleOwnership.R script.
+#' Save the data specifications list
+#' ---------------------------------
+#' Specifications list for AdjustVehicleOwnership module
+#' 
+#' A list containing specifications for the AdjustVehicleOwnership module.
+#' 
+#' @format A list containing 4 components:
+#' \describe{
+#'  \item{RunBy}{the level of geography that the module is run at}
+#'  \item{Inp}{model inputs to be saved to the datastore}
+#'  \item{Get}{module inputs to be read from the datastore}
+#'  \item{Set}{module outputs to be written to the datastore}
+#' }
+#' @source AdjustVehicleOwnership.R script.
+#' @export
+"AdjustVehicleOwnershipSpecifications"
 visioneval::savePackageDataset(AdjustVehicleOwnershipSpecifications, overwrite = TRUE)
 
 #=======================================================
@@ -492,7 +494,7 @@ AdjustVehicleOwnership <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("AdjustVehicleOwnership")
+visioneval::documentModule("AdjustVehicleOwnership")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

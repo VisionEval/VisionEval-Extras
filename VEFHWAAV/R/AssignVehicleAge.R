@@ -49,8 +49,8 @@
 #Prepare 2001 NHTS data
 #----------------------
 #Load 2001 NHTS household and vehicle data
-Hh_df <- loadPackageDataset("Hh_df","VE2001NHTS")
-Veh_df <- loadPackageDataset("Veh_df","VE2001NHTS")
+Hh_df <- visioneval::loadPackageDataset("Hh_df","VE2001NHTS")
+Veh_df <- visioneval::loadPackageDataset("Veh_df","VE2001NHTS")
 #Create a vehicle age variable and cap at 30 years
 MaxAge <- 30
 Veh_df$VehAge <- 2002 - Veh_df$Vehyear
@@ -187,7 +187,7 @@ Inp_ls <- items(
 )
 #Load and process AV age distribution data
 AvAge_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "AvAgeDistribution.csv",
     "AssignVehicleAge.R")
@@ -634,7 +634,7 @@ AssignVehicleAge <- function(L) {
       IncProp_IgTy <- sweep(NumVeh_IgTy, 2, colSums(NumVeh_IgTy), "/")
       IncProp_IgTy[is.na(IncProp_IgTy)] <- 1/length(IncProp_IgTy[is.na(IncProp_IgTy)])
       #Calculate cumulative age distributions by type
-      VehicleAgeModel_ls <- loadPackageDataset("VehicleAgeModel_ls","VEFHWAAV")
+      VehicleAgeModel_ls <- visioneval::loadPackageDataset("VehicleAgeModel_ls","VEFHWAAV")
       AutoAgeProp_Ag <-
         adjustAgeDistribution(
           VehicleAgeModel_ls$Auto$AgeCDF_Ag,
@@ -708,7 +708,7 @@ AssignVehicleAge <- function(L) {
       AVIncProp_IgTy <- sweep(AVNumVeh_IgTy, 2, colSums(AVNumVeh_IgTy), "/")
       AVIncProp_IgTy[is.na(AVIncProp_IgTy)] <- 1/length(AVIncProp_IgTy[is.na(AVIncProp_IgTy)])
       
-      AvAgeModel_ls <- loadPackageDataset("AvAgeModel_ls","VEFHWAAV")
+      AvAgeModel_ls <- visioneval::loadPackageDataset("AvAgeModel_ls","VEFHWAAV")
       AVAutoMeanAge <- 3
       AVLtTrkMeanAge <- 4
       AVAutoAgeCDF_Ag <- c(plnorm(c(0.8,seq(1,14,1)), 1, .55), rep(1,16))
@@ -795,7 +795,7 @@ AssignVehicleAge <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("AssignVehicleAge")
+visioneval::documentModule("AssignVehicleAge")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

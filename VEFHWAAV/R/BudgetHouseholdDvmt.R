@@ -155,7 +155,7 @@ Inp_ls <- items(
 )
 #Load and process vehicle operations cost data
 Exp_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "ces_vehicle_op-cost.csv",
     "BudgetHouseholdDvmt.R")
@@ -248,7 +248,7 @@ MaxVals_df <-
 #Create a list which implements the operation cost proportions model
 OpPropModel_ls <-   list(
   Type = "linear",
-  Formula = makeModelFormulaString(MaxOpProp_LM),
+  Formula = visioneval::makeModelFormulaString(MaxOpProp_LM),
   PrepFun = function(Inc_) data.frame(LogInc = log1p(Inc_), Intercept = 1),
   OutFun = function(Result_) pmin(exp(Result_), 0.75),
   Summary = capture.output(summary(MaxOpProp_LM)),
@@ -646,7 +646,7 @@ BudgetHouseholdDvmt <- function(L, M) {
 
   #Calculate household budget proportion of income
   #-----------------------------------------------
-  OpPropModel_ls <- loadPackageDataset("OpPropModel_ls", "VETravelPerformance")
+  OpPropModel_ls <- visioneval::loadPackageDataset("OpPropModel_ls", "VETravelPerformance")
   BudgetProp_Hh <- applyLinearModel(OpPropModel_ls, L$Year$Household$Income)
 
   #Calculate adjusted household income for calculating vehicle operations budget
@@ -756,7 +756,7 @@ BudgetHouseholdDvmt <- function(L, M) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("BudgetHouseholdDvmt")
+visioneval::documentModule("BudgetHouseholdDvmt")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

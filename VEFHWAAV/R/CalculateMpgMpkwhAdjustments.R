@@ -172,7 +172,7 @@ Inp_ls <- items(
 )
 #Load and process data
 VehFSC_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "vehicle_fuel_speed_curves.csv",
     "LoadDefaultValues.R")
@@ -291,7 +291,7 @@ Inp_ls <- items(
 )
 #Load and process data
 SpeedSmoothEffect_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "max_smooth_improve.csv",
     "LoadDefaultValues.R")
@@ -951,7 +951,7 @@ CalculateMpgMpkwhAdjustments <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("CalculateMpgMpkwhAdjustments")
+visioneval::documentModule("CalculateMpgMpkwhAdjustments")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

@@ -21,10 +21,9 @@ Suggests:
     knitr
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2
-Remotes:
 Collate: 
-	'AdjustVehicleOwnership.R'
-	'AssignCarSvcAvailability.R'
+    'AdjustVehicleOwnership.R'
+    'AssignCarSvcAvailability.R'
     'AssignVehicleAge.R'
     'AssignVehicleOwnership.R'
     'BudgetHouseholdDvmt.R'
@@ -33,4 +32,4 @@ Collate:
     'CalculateRoadPerformance.R'
     'CalculateVehicleOperatingCost.R'
     'CreateVehicleTable.R'
-	'CalculateMpgMpkwhAdjustments.R'
+    'CalculateMpgMpkwhAdjustments.R'

@@ -51,17 +51,17 @@ LocateEmploymentSpecifications <- list(
   RunBy = "Region",
   #Specify new tables to be created by Inp if any
   #Specify new tables to be created by Set if any
-  NewSetTable = items(
-    item(
+  NewSetTable = list(
+    list(
       TABLE = "Worker",
       GROUP = "Year"
     )
   ),
   #Specify input data
-  Inp = items(
-    item(
+  Inp = visioneval::item(
+    list(
       NAME =
-        items("TotEmp",
+        list("TotEmp",
               "RetEmp",
               "SvcEmp"),
       FILE = "bzone_employment.csv",
@@ -76,15 +76,15 @@ LocateEmploymentSpecifications <- list(
       UNLIKELY = "",
       TOTAL = "",
       DESCRIPTION =
-        items(
+        list(
           "Total number of jobs in zone",
           "Number of jobs in retail sector in zone",
           "Number of jobs in service sector in zone"
         )
     ),
-    item(
+    list(
       NAME =
-        items(
+        list(
           "Latitude",
           "Longitude"),
       FILE = "bzone_lat_lon.csv",
@@ -99,16 +99,16 @@ LocateEmploymentSpecifications <- list(
       UNLIKELY = "",
       TOTAL = "",
       DESCRIPTION =
-        items(
+        list(
           "Latitude in decimal degrees of the centroid of the zone",
           "Longitude in decimal degrees of the centroid of the zone"
         )
     )
   ),
   #Specify data to be loaded from data store
-  Get = items(
-    item(
-      NAME = items(
+  Get = list(
+    list(
+      NAME = list(
         "Bzone",
         "Azone",
         "Marea"),
@@ -119,9 +119,9 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME =
-        items("TotEmp",
+        list("TotEmp",
               "RetEmp",
               "SvcEmp"),
       TABLE = "Bzone",
@@ -131,7 +131,7 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "NumWkr",
       TABLE = "Azone",
       GROUP = "Year",
@@ -140,7 +140,7 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "Worker",
       TABLE = "Person",
       GROUP = "Year",
@@ -149,8 +149,8 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = c("NA", "< 0"),
       ISELEMENTOF = ""
     ),
-    item(
-      NAME = items("HhId", "PerId"),
+    list(
+      NAME = list("HhId", "PerId"),
       TABLE = "Person",
       GROUP = "Year",
       TYPE = "character",
@@ -158,7 +158,7 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME = "Bzone",
       TABLE = "Person",
       GROUP = "Year",
@@ -167,9 +167,9 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = "",
       ISELEMENTOF = ""
     ),
-    item(
+    list(
       NAME =
-        items(
+        list(
           "Latitude",
           "Longitude"),
       TABLE = "Bzone",
@@ -182,10 +182,10 @@ LocateEmploymentSpecifications <- list(
     )
   ),
   #Specify data to saved in the data store
-  Set = items(
-    item(
+  Set = list(
+    list(
       NAME =
-        items("TotEmp",
+        list("TotEmp",
               "RetEmp",
               "SvcEmp"),
       TABLE = "Bzone",
@@ -197,15 +197,15 @@ LocateEmploymentSpecifications <- list(
       ISELEMENTOF = "",
       SIZE = 0,
       DESCRIPTION =
-        items(
+        list(
           "Total number of jobs in zone",
           "Number of jobs in retail sector in zone",
           "Number of jobs in service sector in zone"
         )
     ),
-    item(
+    list(
       NAME =
-        items("HhId",
+        list("HhId",
               "WkrId"),
       TABLE = "Worker",
       GROUP = "Year",
@@ -215,11 +215,11 @@ LocateEmploymentSpecifications <- list(
       PROHIBIT = "NA",
       ISELEMENTOF = "",
       DESCRIPTION =
-        items("Unique household ID",
+        list("Unique household ID",
               "Unique worker ID")
     ),
-    item(
-      NAME = items(
+    list(
+      NAME = list(
         "Bzone",
         "Azone",
         "Marea"),
@@ -230,12 +230,12 @@ LocateEmploymentSpecifications <- list(
       NAVALUE = -1,
       PROHIBIT = "",
       ISELEMENTOF = "",
-      DESCRIPTION = items(
+      DESCRIPTION = list(
         "Bzone ID of worker job location",
         "Azone ID of worker job location",
         "Marea ID of worker job location")
     ),
-    item(
+    list(
       NAME = "DistanceToWork",
       TABLE = "Worker",
       GROUP = "Year",
@@ -264,6 +264,7 @@ LocateEmploymentSpecifications <- list(
 #'  \item{Get}{module inputs to be read from the datastore}
 #'  \item{Set}{module outputs to be written to the datastore}
 #' }
+#' @import visioneval
 #' @source LocateEmployment.R script.
 "LocateEmploymentSpecifications"
 visioneval::savePackageDataset(LocateEmploymentSpecifications, overwrite = TRUE)
@@ -454,7 +455,7 @@ LocateEmployment <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("LocateEmployment")
+visioneval::documentModule("LocateEmployment")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

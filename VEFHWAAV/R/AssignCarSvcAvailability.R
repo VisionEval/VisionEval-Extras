@@ -19,6 +19,7 @@
 #
 #</doc>
 
+item <- items <- list
 
 #=============================================
 #SECTION 1: ESTIMATE AND SAVE MODEL PARAMETERS
@@ -182,7 +183,7 @@ AssignCarSvcAvailability <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("AssignCarSvcAvailability")
+visioneval::documentModule("AssignCarSvcAvailability")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

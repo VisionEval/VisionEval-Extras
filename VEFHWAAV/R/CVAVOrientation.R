@@ -420,7 +420,7 @@ CVAVOrientation <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("CVAVOrientation")
+visioneval::documentModule("CVAVOrientation")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

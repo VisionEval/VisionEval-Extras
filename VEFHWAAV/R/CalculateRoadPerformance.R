@@ -329,7 +329,7 @@ UmsInp_ls <- items(
 #Read in Urban Mobility Study datasets
 #-------------------------------------
 Ums_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     UmsInp_ls,
     "ums_2009.csv",
     "CalculateRoadPerformance.R")
@@ -594,7 +594,7 @@ BaseSpeedInp_ls <- items(
     TOTAL = ""
   )
 )
-BaseSpeeds_df <-   processEstimationInputs(
+BaseSpeeds_df <- visioneval::processEstimationInputs(
   BaseSpeedInp_ls,
   "base_speeds.csv",
   "CalculateSpeeds.R")
@@ -682,7 +682,7 @@ RampMeteringInp_ls <- items(
     TOTAL = ""
   )
 )
-Ramp_df <-   processEstimationInputs(
+Ramp_df <-   visioneval::processEstimationInputs(
   RampMeteringInp_ls,
   "ramp_metering.csv",
   "CalculateSpeeds.R")
@@ -737,7 +737,7 @@ IncidentManagementInp_ls <- items(
     TOTAL = ""
   )
 )
-Incident_df <-   processEstimationInputs(
+Incident_df <-   visioneval::processEstimationInputs(
   IncidentManagementInp_ls,
   "incident_management.csv",
   "CalculateSpeeds.R")
@@ -792,7 +792,7 @@ SignalCoordinationInp_ls <- items(
     TOTAL = ""
   )
 )
-Signal_df <-   processEstimationInputs(
+Signal_df <-   visioneval::processEstimationInputs(
   SignalCoordinationInp_ls,
   "signal_coordination.csv",
   "CalculateSpeeds.R")
@@ -847,7 +847,7 @@ AccessManagementInp_ls <- items(
     TOTAL = ""
   )
 )
-Access_df <-   processEstimationInputs(
+Access_df <-   visioneval::processEstimationInputs(
   AccessManagementInp_ls,
   "access_management.csv",
   "CalculateSpeeds.R")
@@ -1158,7 +1158,7 @@ NhtsTripDistTimeInp_ls <- items(
     TOTAL = ""
   )
 )
-NhtsTripDistTime_df <-   processEstimationInputs(
+NhtsTripDistTime_df <-   visioneval::processEstimationInputs(
   NhtsTripDistTimeInp_ls,
   "urban_rural_trip_length_duration.csv",
   "CalculateRoadPerformance.R")
@@ -2340,7 +2340,7 @@ CalculateRoadPerformance <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("CalculateRoadPerformance")
+visioneval::documentModule("CalculateRoadPerformance")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing

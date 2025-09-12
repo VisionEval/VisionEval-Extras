@@ -291,7 +291,7 @@ Inp_ls <- items(
 #Load and process climate change cost data
 #Cost data are in year 2010 dollars
 Deflators_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "deflators.csv",
     "CalculateVehicleOperatingCost.R")
@@ -341,7 +341,7 @@ Inp_ls <- items(
 #Load and process AAA vehicle maintenance, repair, and tire cost data
 #Cost data are for the year 2017
 AAAOpCost_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "aaa_vehicle_operating_costs.csv",
     "CalculateVehicleOperatingCost.R")
@@ -387,7 +387,7 @@ Inp_ls <- items(
 #Load and process BLS vehicle maintenance, repair, and tire cost data
 #Cost data are for the year 2012
 BLSOpCost_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "bls_vehicle_operating_costs.csv",
     "CalculateVehicleOperatingCost.R")
@@ -444,7 +444,7 @@ Inp_ls <- items(
 #Load and process climate change cost data
 #Cost data are in year 2007 dollars
 CO2eCost_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "co2e_costs.csv",
     "CalculateVehicleOperatingCost.R")
@@ -488,7 +488,7 @@ Inp_ls <- items(
 #Load and process other externality cost data
 #Cost data are in year 2010 dollars
 OtherExtCost_df <-
-  processEstimationInputs(
+  visioneval::processEstimationInputs(
     Inp_ls,
     "ldv_externality_costs.csv",
     "CalculateVehicleOperatingCost.R")
@@ -1925,7 +1925,7 @@ CalculateVehicleOperatingCost <- function(L) {
 #===============================================================
 #Run module automatic documentation
 #----------------------------------
-documentModule("CalculateVehicleOperatingCost")
+visioneval::documentModule("CalculateVehicleOperatingCost")
 
 #Test code to check specifications, loading inputs, and whether datastore
 #contains data needed to run module. Return input list (L) to use for developing
