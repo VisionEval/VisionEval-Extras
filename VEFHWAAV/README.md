@@ -39,7 +39,10 @@ avModel <- installModel("VERSPM","av")
 ```
 
 See the project reports for additional details:
+
 [Task 3_Tool_Design_Final Report.pdf](https://github.com/user-attachments/files/30131936/Task.3_Tool_Design_Final.Report.pdf)
+
 [Task 5_Final_Report_2_3_2023_508.pdf](https://github.com/user-attachments/files/30131938/Task.5_Final_Report_2_3_2023_508.pdf)
+
 Contact [VisionEval Info](mailto:info@visioneval.org?subject=VEFHWAAV%20Module)
 for more information.
